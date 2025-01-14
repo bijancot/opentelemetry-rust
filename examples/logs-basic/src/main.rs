@@ -8,9 +8,7 @@ fn main() {
     let exporter = opentelemetry_stdout::LogExporter::default();
     let provider: LoggerProvider = LoggerProvider::builder()
         .with_resource(
-            Resource::builder()
-                .with_service_name("log-appender-tracing-example")
-                .build(),
+            Resource::new(vec![KeyValue::new("service", "app-main")])
         )
         .with_simple_exporter(exporter)
         .build();
